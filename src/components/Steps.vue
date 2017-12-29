@@ -1,10 +1,7 @@
 <template>
    <div class="cb-top-line">
         <div v-for="(item, index)  in listSteps" :class=" value == ++index ? 'cb-step--current cb-step' : 'cb-step'" @click.prevent="changeStep(index)">
-            <p>
-                <span>{{index}}</span>
-                {{item}}
-            </p>
+            <p><span>{{index}}</span>{{item}}</p>
         </div>
     </div>
 </template>
@@ -18,7 +15,9 @@
         },
         methods:{
             changeStep: function(index){
-                 this.$emit('input', index);
+                if(index < this.value){
+                    this.$emit('input', index);
+                }
             } 
         }
     }
